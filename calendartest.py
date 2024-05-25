@@ -1,20 +1,35 @@
-import google.auth
-from googleapiclient.discovery import build
+import requests
+import icalendar
+from datetime import datetime, timezone
 
-# Set up credentials
-credentials, _ = google.auth.default()
-service = build('calendar', 'v3', credentials=credentials)
+def download_ics_file(public_ics_url):
+    response = requests.get(public_ics_url)
+    if response.status_code == 200:
+        return response.text
+    else:
+        print("Failed to download .ics file.")
+        return None
 
-# Define calendar IDs of the calendars you want to access
-calendar_ids = ['primary', 'calendar.google.com/calendar/u/0?cid=MWUzYTgxZTIzZGIxNWRiNTM3MWFmZjgzNDM1ZTYyNmU5OTZlZjhmMjZmNzViMTMzMWFiMTdlYzBlZmFiMzdiYUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t']  # Add more calendar IDs as needed
+#TODO append /public/basic.ics
+public_ics_url = "https://calendar.google.com/calendar/ical/1e3a81e23db15db5371aff83435e626e996ef8f26f75b1331ab17ec0efab37ba%40group.calendar.google.com/public/basic.ics"
 
-# Retrieve events from each calendar
-all_events = []
-for calendar_id in calendar_ids:
-    events_result = service.events().list(calendarId=calendar_id).execute()
-    events = events_result.get('items', [])
-    all_events.extend(events)
+ics_data = download_ics_file(public_ics_url)
 
-# Process the event data
-for event in all_events:
-    print(event['summary'], event['start'].get('dateTime', event['start'].get('date')))
+def get_current_event_summary(ics_data):
+    current_time = datetime.now(timezone.utc)
+    cal = icalendar.Calendar.from_ical(ics_data)
+    for component in cal.walk():
+        if component.name == "VEVENT":
+            start_time = component.get('dtstart').dt
+            end_time = component.get('dtend').dt
+            if start_time <= current_time <= end_time:
+                return str(component.get('summary'))
+    return None
+
+
+if ics_data:
+    current_event_summary = get_current_event_summary(ics_data)
+    if current_event_summary:
+        print("Current Event Summary:", current_event_summary)
+    else:
+        print("No event currently scheduled.")
