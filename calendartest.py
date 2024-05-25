@@ -10,11 +10,6 @@ def download_ics_file(public_ics_url):
         print("Failed to download .ics file.")
         return None
 
-#TODO append /public/basic.ics
-public_ics_url = "https://calendar.google.com/calendar/ical/1e3a81e23db15db5371aff83435e626e996ef8f26f75b1331ab17ec0efab37ba%40group.calendar.google.com/public/basic.ics"
-
-ics_data = download_ics_file(public_ics_url)
-
 def get_current_event_summary(ics_data):
     current_time = datetime.now(timezone.utc)
     cal = icalendar.Calendar.from_ical(ics_data)
@@ -26,10 +21,17 @@ def get_current_event_summary(ics_data):
                 return str(component.get('summary'))
     return None
 
+def get_event(url):
+    public_ics_url = url + "/public/basic.ics"
+    ics_data = download_ics_file(public_ics_url)
+    return get_current_event_summary(ics_data)
 
-if ics_data:
-    current_event_summary = get_current_event_summary(ics_data)
-    if current_event_summary:
-        print("Current Event Summary:", current_event_summary)
-    else:
-        print("No event currently scheduled.")
+    
+
+
+# if ics_data:
+#     current_event_summary = get_current_event_summary(ics_data)
+#     if current_event_summary:
+#         print("Current Event Summary:", current_event_summary)
+#     else:
+#         print("No event currently scheduled.")
