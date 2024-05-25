@@ -2,6 +2,7 @@ import ollama
 from pywinauto import Desktop
 from win32gui import FindWindow, PostMessage
 import win32.lib.win32con as win32con
+from calendarevent import *
 def get_current_calander_event():
     return "Coding"
 def get_categories():
@@ -61,7 +62,7 @@ def learn(categories):
 
 
 # eval_windows(get_category_list(categorize_events("Coding Project"))," Coding Project")
-learn(categorize_events(" 1920s History Project"))
+learn(categorize_events(get_event("https://calendar.google.com/calendar/ical/1e3a81e23db15db5371aff83435e626e996ef8f26f75b1331ab17ec0efab37ba%40group.calendar.google.com/private-cd3778bb335f55bf428dc4307e5a7994/basic.ics")))
 # def switch_tasks():
 #     calandar_event=get_current_calander_event()
 #     category=categorize_event(calandar_event)
