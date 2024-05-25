@@ -1,6 +1,6 @@
 from blocklist import *
 
-if blocktime["start"] < dt.now() < blocktime["end"] :
+if blocktime["start"] < dt.now() < blocktime["end"] or False :
     # to know our current mode
     print("Time to focus ...")
 
