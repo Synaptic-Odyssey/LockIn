@@ -21,4 +21,4 @@ def close_app(app_name):
     else:
         print(app_name+'('+sys_app+')'+' closed')
 
-close_app('chrome')
+close_app('Stack Overflow')
