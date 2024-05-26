@@ -1,0 +1,11 @@
+Task Switcher,2
+Taskbar,1
+LockIn.py - 5.25Hackathon - Visual Studio Code,5
+AP US History - 1750: RussoG p2 T2 | Schoology - Google Chrome - Armaan (student.fuhsd.org),4
+Turning up the heat on next-generation semiconductors | MIT News | Massachusetts Institute of Technology - Google Chrome - Armaan,8
+Main.java - gameoflife-GomesArmaan-main - Visual Studio Code,5
+spacedesk Driver Console Application,4
+spacedesk Non-Commercial Viewer connected,5
+Program Manager,4
+Task Switcher,1
+Taskbar,1

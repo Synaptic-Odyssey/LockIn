@@ -18,5 +18,5 @@ def close_window(handle: int):
     PostMessage(handle, win32con.WM_CLOSE, 0, 0)
 
 
-handle = find_window_by_name("@kevin - Discord")
+handle = find_window_by_name("chrome")
 close_window(handle)
