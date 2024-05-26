@@ -27,25 +27,15 @@ def get_current_event(ics_data):
     return None
 
 def get_event(url):
-    
     ics_data = download_ics_file(url)
     if ics_data:
         current_event= get_current_event(ics_data)
     if current_event:
-<<<<<<< Updated upstream
         # print(current_event)
         return current_event
     else:
         # print("No event currently scheduled.")
         return None
         
-
 print(get_event("https://calendar.google.com/calendar/ical/1e3a81e23db15db5371aff83435e626e996ef8f26f75b1331ab17ec0efab37ba%40group.calendar.google.com/private-cd3778bb335f55bf428dc4307e5a7994/basic.ics"))
-=======
-        return current_event
-    else:
-        return None
-        
 
-print(get_event("https://calendar.google.com/calendar/ical/1e3a81e23db15db5371aff83435e626e996ef8f26f75b1331ab17ec0efab37ba%40group.calendar.google.com/private-cd3778bb335f55bf428dc4307e5a7994/basic.ics"))
->>>>>>> Stashed changes
